@@ -1,17 +1,17 @@
 package decathlon.solution01.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import decathlon.common.DecathlonEvent;
 import decathlon.solution01.beans.DecathlonResults;
-import decathlon.solution01.services.DecathlonService;
 
 @SpringBootTest
-public class DecathlonServiceTest extends AbstractTestNGSpringContextTests {
+public class DecathlonServiceTest {
 
 	@Autowired
 	private DecathlonService service;
@@ -30,65 +30,67 @@ public class DecathlonServiceTest extends AbstractTestNGSpringContextTests {
 
 	// for some reason benchmark values 700pt are not calculated correct.
 	// tried floats too, didn't work. needs more investigation
-	
-	@Test(enabled = false)
+
+	@Test
+	@Disabled
 	public void test_benchmark_pole_vault() {
 		int fieldPoints = service.fieldPoints(429, DecathlonEvent.EventPoleVault);
-		Assert.assertEquals(fieldPoints, 700, "actual pole vault points = " + fieldPoints);
+		assertEquals(700, fieldPoints, "actual pole vault points = " + fieldPoints);
 	}
 
-	@Test(enabled = false)
+	@Test
+	@Disabled
 	public void test_benchmark_high_jump() {
 		int fieldPoints = service.fieldPoints(188, DecathlonEvent.EventHighJump);
-		Assert.assertEquals(fieldPoints, 700);
+		assertEquals(700, fieldPoints);
 	}
 
 	@Test
 	public void test_benchmark_1500m() {
 		int trackPoints = service.trackPoints(4 * 60 + 07.42, DecathlonEvent.Event1500m);
-		Assert.assertEquals(trackPoints, 900);
+		assertEquals(900, trackPoints);
 	}
 
 	@Test
 	public void test_benchmark_javelin_throw() {
 		int fieldPoints = service.fieldPoints(77.19, DecathlonEvent.EventJavelinThrow);
-		Assert.assertEquals(fieldPoints, 1000);
+		assertEquals(1000, fieldPoints);
 	}
 
 	@Test
 	public void test_benckmark_discus_throw() {
 		int fieldPoints = service.fieldPoints(46.59, DecathlonEvent.EventDiscusThrow);
-		Assert.assertEquals(fieldPoints, 800);
+		assertEquals(800, fieldPoints);
 	}
 
 	@Test
 	public void test_benchmark_110m() {
 		int trackPoints = service.trackPoints(14.59, DecathlonEvent.Event110m);
-		Assert.assertEquals(trackPoints, 900);
+		assertEquals(900, trackPoints);
 	}
 
 	@Test
 	public void test_benchmark_400m() {
 		int trackPoints = service.trackPoints(46.17, DecathlonEvent.Event400m);
-		Assert.assertEquals(trackPoints, 1000);
+		assertEquals(1000, trackPoints);
 	}
 
 	@Test
 	public void test_benchmark_shot_put() {
 		int fieldPoints = service.fieldPoints(15.16, DecathlonEvent.EventShotPut);
-		Assert.assertEquals(fieldPoints, 800);
+		assertEquals(800, fieldPoints);
 	}
 
 	@Test
 	public void test_benchmark_long_jump() {
 		int fieldPoints = service.fieldPoints(736, DecathlonEvent.EventLongJump);
-		Assert.assertEquals(fieldPoints, 900);
+		assertEquals(900, fieldPoints);
 	}
 
 	@Test
 	public void test_benchmark_100m() {
 		int trackPoints = service.trackPoints(10.395, DecathlonEvent.Event100m);
-		Assert.assertEquals(trackPoints, 1000);
+		assertEquals(1000, trackPoints);
 	}
 
 	@Test
@@ -108,7 +110,7 @@ public class DecathlonServiceTest extends AbstractTestNGSpringContextTests {
 		results.setResult1500m(4 * 60 + 36.11);
 
 		int score = service.calculateScore(results);
-		Assert.assertEquals(score, 9126, "calculated score = " + score);
+		assertEquals(9126, score, "calculated score = " + score);
 	}
 
 }
